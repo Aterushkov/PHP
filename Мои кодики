@@ -1,0 +1,126 @@
+//Первая функция русифицирует дату (месяц)
+function russian_date_mount(){
+    $date=explode(".", date("d.m"));
+    switch ($date[1]){
+    case 1: $m='января'; break;
+    case 2: $m='февраля'; break;
+    case 3: $m='марта'; break;
+    case 4: $m='апреля'; break;
+    case 5: $m='мая'; break;
+    case 6: $m='июня'; break;
+    case 7: $m='июля'; break;
+    case 8: $m='августа'; break;
+    case 9: $m='сентября'; break;
+    case 10: $m='октября'; break;
+    case 11: $m='ноября'; break;
+    case 12: $m='декабря'; break;
+    }
+    echo $date[0].'&nbsp;'.$m; 
+
+     } 
+//Вторая функция русифицирует дату (день недели)
+function russian_date_day(){
+    $dates=explode(".", date("N"));
+	switch ($dates[0]){
+		case 1: $d='понедельник'; break;
+		case 2: $d='вторник'; break;
+		case 3: $d='среда'; break;
+		case 4: $d='четверг'; break;
+		case 5: $d='пятница'; break;
+		case 6: $d='суббота'; break;
+        case 7: $d='Воскресенье'; break;
+    }
+        echo $d;
+}   
+//Тоже самое в ООП
+<?
+class RussianDateMount{
+
+
+    public function russian_date_mount(){
+        $date=explode(".", date("d.m"));
+        switch ($date[1]){
+        case 1: $m='января'; break;
+        case 2: $m='февраля'; break;
+        case 3: $m='марта'; break;
+        case 4: $m='апреля'; break;
+        case 5: $m='мая'; break;
+        case 6: $m='июня'; break;
+        case 7: $m='июля'; break;
+        case 8: $m='августа'; break;
+        case 9: $m='сентября'; break;
+        case 10: $m='октября'; break;
+        case 11: $m='ноября'; break;
+        case 12: $m='декабря'; break;
+        }
+        return $date[0].'&nbsp;'.$m; 
+    
+        } 
+
+        // public function getRussian_date_mount(){
+        //     $this -> russian_date_mount();
+        // }
+
+
+
+        public function russian_date_day(){
+            $dates=explode(".", date("N"));
+            switch ($dates[0]){
+                case 1: $d='понедельник'; break;
+                case 2: $d='вторник'; break;
+                case 3: $d='среда'; break;
+                case 4: $d='четверг'; break;
+                case 5: $d='пятница'; break;
+                case 6: $d='суббота'; break;
+                case 7: $d='Воскресенье'; break;
+            }
+                echo $d;
+        }
+
+
+    }
+
+$rdm = new RussianDateMount;
+$rdm -> russian_date_mount();
+
+$rdd = new RussianDateMount;
+$rdd -> russian_date_day();
+//<?=$rdm :: russian_date_mount();?> //вывод
+?>
+
+//Погодный парсер
+
+<?
+$url = "http://api.openweathermap.org/data/2.5/weather?id=554206&lang=ru&units=metric&APPID=b7ac7c8549a000915cc0693235741502";
+$contents = file_get_contents($url);
+$clima=json_decode($contents);
+
+$temp_max=$clima->main->temp_max;
+$temp_min=$clima->main->temp_min;
+$icon=$clima->weather[0]->icon.".png";
+$today = date("F j, Y, g:i a");
+$cityname = $clima->name; 
+
+// echo $cityname . " - " .$today . "<br>";
+// echo "Temp Max: " . $temp_max ."&deg;C<br>";
+echo $temp_min;
+echo "<img src='http://openweathermap.org/img/w/" . $icon ."'/ >";
+
+//Ограничение вывода символов
+
+class SmallText{
+    public function small_echo($x, $length)
+{
+  if(strlen($x)<=$length)
+  {
+    echo $x;
+  }
+  else
+  {
+    $y=substr($x,0,$length) . '...';
+    echo $y;
+  }
+}
+}
+$sta = new SmallText;
+$sta -> small_echo();
