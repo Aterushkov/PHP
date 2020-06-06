@@ -2,9 +2,8 @@
 
 class Weather{
     
-    protected$token = 'токен';
-    public function getWeather($lat, $lon)
-    {
+    protected $token = 'токен';
+    public function getWeather($lat, $lon){
         $url = "api.openweathermap.org/data/2.5/weather";
         $params = [];
         $params ['lat']= $lat;

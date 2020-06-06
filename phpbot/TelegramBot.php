@@ -1,3 +1,4 @@
+<?
 class TelegramBot{
     protected $token =" " \\Токен телеги
     protected $updateId;
